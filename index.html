@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <title>ChaloChale - Luxury Travel Experience</title>
+    
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --luxury-gold: #D4AF37;
+            --luxury-dark: #1a1a2e;
+            --luxury-purple: #16213e;
+            --card-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            --hover-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%);
+            overflow-x: hidden;
+        }
+
+        /* Luxury Navbar */
+        .navbar {
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(22, 33, 62, 0.95) 100%);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .navbar:hover {
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--luxury-gold) !important;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .navbar-brand:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-link {
+            color: #ffffff !important;
+            font-weight: 500;
+            padding: 0.8rem 1.2rem !important;
+            position: relative;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--luxury-gold) !important;
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--luxury-gold);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 70%;
+        }
+
+        .btn-warning {
+            background: var(--luxury-gold);
+            border: none;
+            color: var(--luxury-dark);
+            font-weight: 600;
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-warning:hover {
+            background: #c9a227;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Luxury Carousel */
+        .carousel-item img {
+            height: 70vh;
+            object-fit: cover;
+            filter: brightness(0.8);
+        }
+
+        .carousel-caption {
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.85) 0%, rgba(22, 33, 62, 0.85) 100%);
+            padding: 2.5rem;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            max-width: 600px;
+            margin: 0 auto;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .carousel-caption h5 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--luxury-gold);
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .carousel-caption p {
+            font-size: 1.1rem;
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+        }
+
+        .carousel-caption .btn-primary {
+            background: var(--luxury-gold);
+            border: none;
+            color: var(--luxury-dark);
+            font-weight: 600;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-caption .btn-primary:hover {
+            background: #c9a227;
+            transform: translateY(-2px);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            color: var(--luxury-dark);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            width: 80px;
+            height: 3px;
+            background: var(--luxury-gold);
+            transform: translateX(-50%);
+        }
+
+        /* Services Section */
+        .services-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .services-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="%23D4AF37" stroke-width="0.5" opacity="0.1"/></svg>');
+            background-size: 100px 100px;
+            opacity: 0.5;
+        }
+
+        .service-card {
+            padding: 2.5rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary-gradient);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .service-card i {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .service-card h5 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--luxury-dark);
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Destinations Section */
+        .destinations-section {
+            background: white;
+        }
+
+        .destination-card {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: all 0.4s ease;
+            border: none;
+            background: white;
+        }
+
+        .destination-card:hover {
+            transform: translateY(-15px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .destination-card .card-img-top {
+            height: 280px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .destination-card:hover .card-img-top {
+            transform: scale(1.1);
+        }
+
+        .destination-card .card-body {
+            padding: 2rem;
+            position: relative;
+        }
+
+        .destination-card .card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: var(--luxury-dark);
+            margin-bottom: 0.8rem;
+        }
+
+        .destination-card .card-text {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .destination-card .btn-primary {
+            background: var(--primary-gradient);
+            border: none;
+            color: white;
+            font-weight: 600;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .destination-card .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Packages Section */
+        .packages-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .packages-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="%23D4AF37" stroke-width="0.5" opacity="0.1"/></svg>');
+            background-size: 100px 100px;
+            opacity: 0.5;
+        }
+
+        .package-card {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: all 0.4s ease;
+            border: none;
+            background: white;
+            position: relative;
+        }
+
+        .package-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary-gradient);
+        }
+
+        .package-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .package-card .card-body {
+            padding: 2.5rem;
+        }
+
+        .package-card h5 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: var(--luxury-dark);
+            margin-bottom: 1rem;
+        }
+
+        .package-card p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .package-card .text-success {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--luxury-gold) !important;
+            margin-bottom: 1.5rem;
+        }
+
+        .package-card .btn-primary {
+            background: var(--primary-gradient);
+            border: none;
+            color: white;
+            font-weight: 600;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .package-card .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .carousel-item img {
+                height: 50vh;
+            }
+
+            .carousel-caption {
+                padding: 1.5rem;
+                margin: 0 1rem;
+            }
+
+            .carousel-caption h5 {
+                font-size: 1.8rem;
+            }
+
+            .carousel-caption p {
+                font-size: 0.9rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .service-card, .destination-card .card-body, .package-card .card-body {
+                padding: 1.5rem;
+            }
+
+            .destination-card .card-img-top {
+                height: 200px;
+            }
+
+            .navbar-brand {
+                font-size: 1.4rem;
+            }
+
+            .nav-link {
+                padding: 0.6rem 1rem !important;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .carousel-item img {
+                height: 40vh;
+            }
+
+            .carousel-caption h5 {
+                font-size: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .service-card i {
+                font-size: 2.5rem;
+            }
+
+            .destination-card .card-title, .package-card h5 {
+                font-size: 1.2rem;
+            }
+
+            .package-card .text-success {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-up {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-gradient);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--luxury-gold);
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+
+        <a class="navbar-brand" href="#">
+            <i class="fa-solid fa-plane-departure me-2"></i>
+            ChaloChale
+        </a>
+
+        <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#menu"
+            aria-controls="menu"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="menu">
+
+            <ul class="navbar-nav ms-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link active" href="chalochale-travel-app/about.html">
+                        <i class="fa-solid fa-home me-1"></i> Home
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="chalochale-travel-app/destinations.html">
+                        <i class="fa-solid fa-map-marked-alt me-1"></i> Destinations
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="chalochale-travel-app/packages.html">
+                        <i class="fa-solid fa-suitcase me-1"></i> Packages
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="chalochale-travel-app/booking.html">
+                        <i class="fa-solid fa-calendar-check me-1"></i> Booking
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="chalochale-travel-app/contact.html">
+                        <i class="fa-solid fa-envelope me-1"></i> Contact
+                    </a>
+                </li>
+
+            </ul>
+
+            <a href="#" class="btn btn-warning ms-lg-3">
+                <i class="fa-solid fa-user me-2"></i> Login
+            </a>
+
+        </div>
+    </div>
+</nav>
+
+    <div class="row" style="margin-top: 76px;">
+        <div class="col-12">
+
+            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                        aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="https://www.sotc.in/blog/wp-content/uploads/2026/02/Places-To-Visit-In-April-1.webp"
+                            class="d-block w-100" alt="Luxury Travel">
+                        <div class="carousel-caption d-none d-md-block animate-up">
+                            <h5>Discover Paradise</h5>
+                            <p>Experience the world's most breathtaking destinations with our exclusive luxury travel packages.</p>
+                            <a href="chalochale-travel-app/destinations.html" class="btn btn-primary">Explore Destinations</a>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://www.flamingotravels.co.in/blog/wp-content/uploads/2025/10/best-places-to-visit-in-India.jpg"
+                            class="d-block w-100" alt="India Heritage">
+                        <div class="carousel-caption d-none d-md-block animate-up">
+                            <h5>Heritage & Culture</h5>
+                            <p>Immerse yourself in the rich cultural heritage and ancient traditions of incredible India.</p>
+                            <a href="chalochale-travel-app/packages.html" class="btn btn-primary">View Packages</a>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://nitsaholidays.in/uploads/blog/457533download.jpeg" class="d-block w-100"
+                            alt="Adventure Travel">
+                        <div class="carousel-caption d-none d-md-block animate-up">
+                            <h5>Adventure Awaits</h5>
+                            <p>Embark on thrilling adventures and create unforgettable memories with our expert guides.</p>
+                            <a href="chalochale-travel-app/booking.html" class="btn btn-primary">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- Services Section -->
+    <section class="services-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Why Choose ChaloChale?</h2>
+                <p class="text-muted mt-4">Experience luxury travel with our premium services</p>
+            </div>
+
+            <div class="row g-4">
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card text-center">
+                        <i class="fa-solid fa-plane"></i>
+                        <h5>Easy Booking</h5>
+                        <p>Book travel packages quickly with our simple booking system. Seamless experience from start to finish.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card text-center">
+                        <i class="fa-solid fa-hotel"></i>
+                        <h5>Best Hotels</h5>
+                        <p>We provide comfortable hotel stays at affordable prices. Luxury accommodations that exceed expectations.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card text-center">
+                        <i class="fa-solid fa-headset"></i>
+                        <h5>24/7 Support</h5>
+                        <p>Our travel support team is available anytime for assistance. Dedicated support for your peace of mind.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Destinations Section -->
+    <section class="destinations-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Popular Destinations</h2>
+                <p class="text-muted mt-4">Explore our handpicked luxury destinations</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="destination-card">
+                        <img src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=800&q=60"
+                            class="card-img-top" alt="Taj Mahal">
+                        <div class="card-body">
+                            <h5 class="card-title">Agra</h5>
+                            <p class="card-text">Visit the Taj Mahal and explore Mughal history. Experience the eternal symbol of love.</p>
+                            <a href="chalochale-travel-app/destinations.html" class="btn btn-primary">Explore</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="destination-card">
+                        <img src="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=800&q=60"
+                            class="card-img-top" alt="Goa">
+                        <div class="card-body">
+                            <h5 class="card-title">Goa</h5>
+                            <p class="card-text">Enjoy beaches, nightlife, and water sports. Perfect blend of relaxation and adventure.</p>
+                            <a href="chalochale-travel-app/destinations.html" class="btn btn-primary">Explore</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="destination-card">
+                        <img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=800&q=60"
+                            class="card-img-top" alt="Jaipur">
+                        <div class="card-body">
+                            <h5 class="card-title">Jaipur</h5>
+                            <p class="card-text">Explore forts, palaces, and Rajasthan culture. Discover the pink city's royal heritage.</p>
+                            <a href="chalochale-travel-app/destinations.html" class="btn btn-primary">Explore</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Packages Section -->
+    <section class="packages-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Featured Packages</h2>
+                <p class="text-muted mt-4">Exclusive travel packages crafted for discerning travelers</p>
+            </div>
+
+            <div class="row g-4">
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="package-card">
+                        <div class="card-body text-center">
+                            <h5>Goa Beach Package</h5>
+                            <p class="mb-2"><i class="fa-solid fa-calendar me-2"></i>5 Days / 4 Nights</p>
+                            <h4 class="text-success">₹15,999</h4>
+                            <p class="text-muted small">Includes luxury beach resort, meals & activities</p>
+                            <button class="btn btn-primary w-100" data-bs-toggle="modal"
+                                data-bs-target="#bookingModal">
+                                <i class="fa-solid fa-ticket me-2"></i> Book Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="package-card">
+                        <div class="card-body text-center">
+                            <h5>Manali Adventure Package</h5>
+                            <p class="mb-2"><i class="fa-solid fa-calendar me-2"></i>6 Days / 5 Nights</p>
+                            <h4 class="text-success">₹18,499</h4>
+                            <p class="text-muted small">Includes mountain resort, adventure activities & meals</p>
+                            <button class="btn btn-primary w-100" data-bs-toggle="modal"
+                                data-bs-target="#bookingModal">
+                                <i class="fa-solid fa-ticket me-2"></i> Book Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="package-card">
+                        <div class="card-body text-center">
+                            <h5>Kerala Backwater Package</h5>
+                            <p class="mb-2"><i class="fa-solid fa-calendar me-2"></i>4 Days / 3 Nights</p>
+                            <h4 class="text-success">₹12,999</h4>
+                            <p class="text-muted small">Includes houseboat stay, traditional meals & tours</p>
+                            <button class="btn btn-primary w-100" data-bs-toggle="modal"
+                                data-bs-target="#bookingModal">
+                                <i class="fa-solid fa-ticket me-2"></i> Book Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5 mt-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <h4 class="font-family-serif mb-3" style="font-family: 'Playfair Display', serif;">ChaloChale</h4>
+                    <p class="text-muted">Your trusted partner for luxury travel experiences. We create unforgettable journeys tailored to your dreams.</p>
+                    <div class="mt-3">
+                        <a href="#" class="text-white me-3"><i class="fa-brands fa-facebook fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fa-brands fa-instagram fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fa-brands fa-twitter fa-lg"></i></a>
+                        <a href="#" class="text-white"><i class="fa-brands fa-linkedin fa-lg"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="mb-3">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="chalochale-travel-app/about.html" class="text-muted text-decoration-none">Home</a></li>
+                        <li class="mb-2"><a href="chalochale-travel-app/destinations.html" class="text-muted text-decoration-none">Destinations</a></li>
+                        <li class="mb-2"><a href="chalochale-travel-app/packages.html" class="text-muted text-decoration-none">Packages</a></li>
+                        <li class="mb-2"><a href="chalochale-travel-app/contact.html" class="text-muted text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="mb-3">Contact Info</h5>
+                    <ul class="list-unstyled text-muted">
+                        <li class="mb-2"><i class="fa-solid fa-location-dot me-2"></i> Mumbai, India</li>
+                        <li class="mb-2"><i class="fa-solid fa-phone me-2"></i> +91 98765 43210</li>
+                        <li class="mb-2"><i class="fa-solid fa-envelope me-2"></i> info@chalochale.com</li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="mb-3">Newsletter</h5>
+                    <p class="text-muted small">Subscribe for exclusive offers and travel updates.</p>
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Your email">
+                        <button class="btn btn-warning" type="button">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4 border-secondary">
+            <div class="text-center text-muted">
+                <p class="mb-0">&copy; 2024 ChaloChale. All rights reserved. | Crafted with <i class="fa-solid fa-heart text-danger"></i> for luxury travelers</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
